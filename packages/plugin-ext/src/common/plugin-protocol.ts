@@ -626,6 +626,8 @@ export interface PluginDeployerHandler {
     deployFrontendPlugins(frontendPlugins: PluginDeployerEntry[]): Promise<void>;
     deployBackendPlugins(backendPlugins: PluginDeployerEntry[]): Promise<void>;
 
+    removeDeployedPluginId(pluginId: string): void;
+
     getPluginDependencies(pluginToBeInstalled: PluginDeployerEntry): Promise<PluginDependencies | undefined>
 }
 
@@ -669,6 +671,8 @@ export interface PluginServer {
      * Deploy a plugin
      */
     deploy(pluginEntry: string): Promise<void>;
+
+    undeploy(pluginId: string): Promise<void>;
 
     setStorageValue(key: string, value: KeysToAnyValues, kind: PluginStorageKind): Promise<boolean>;
     getStorageValue(key: string, kind: PluginStorageKind): Promise<KeysToAnyValues>;
